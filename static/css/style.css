@@ -1,0 +1,821 @@
+:root {
+    --gothic-dark: #0a0a0a;
+    --gothic-darker: #050505;
+    --gothic-red: #8b0000;
+    --gothic-blood: #cc0000;
+    --gothic-gray: #1a1a1a;
+    --gothic-light: #e6e6e6;
+    --gothic-silver: #cccccc;
+    --gothic-border: #2a2a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    background-color: var(--gothic-darker);
+    color: var(--gothic-light);
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(139, 0, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 85% 30%, rgba(139, 0, 0, 0.03) 0%, transparent 20%),
+        linear-gradient(to bottom, var(--gothic-darker), var(--gothic-dark));
+    min-height: 100vh;
+    text-align: right;
+    direction: rtl;
+}
+
+/* شريط التنقل */
+.gothic-navbar {
+    background-color: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid var(--gothic-red);
+    padding: 15px 0;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: 'Cinzel', cursive;
+    font-size: 28px;
+    color: var(--gothic-light);
+    text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--gothic-red);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin-left: 0;
+}
+
+.nav-link {
+    color: var(--gothic-light);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    color: var(--gothic-red);
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gothic-red);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover:after {
+    width: 100%;
+}
+
+/* قسم الهيرو الرئيسي */
+.hero-section {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(26, 26, 26, 0.8)), 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="gothicPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 10h20M10 0v20" stroke="%238B0000" stroke-width="0.5" fill="none"/></pattern></defs><rect width="100" height="100" fill="url(%23gothicPattern)"/></svg>');
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    color: var(--gothic-light);
+    text-shadow: 0 0 30px rgba(139, 0, 0, 0.8);
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(139, 0, 0, 0.9), 0 0 40px rgba(139, 0, 0, 0.6);
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.6rem;
+    color: var(--gothic-silver);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-gothic {
+    background: linear-gradient(135deg, var(--gothic-dark), var(--gothic-red));
+    color: var(--gothic-light);
+    border: 1px solid var(--gothic-red);
+    padding: 15px 35px;
+    border-radius: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-gothic:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-gothic:hover:before {
+    left: 100%;
+}
+
+.btn-gothic:hover {
+    background: linear-gradient(135deg, var(--gothic-red), var(--gothic-dark));
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+    color: var(--gothic-light);
+}
+
+.btn-gothic-outline {
+    background: transparent;
+    color: var(--gothic-light);
+    border: 2px solid var(--gothic-red);
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+}
+
+.btn-gothic-outline:hover {
+    background: var(--gothic-red);
+    color: var(--gothic-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(139, 0, 0, 0.4);
+}
+
+/* قسم الميزات */
+.features-section {
+    padding: 80px 0;
+    background: var(--gothic-dark);
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.feature-card {
+    background: linear-gradient(145deg, var(--gothic-gray), var(--gothic-dark));
+    border: 1px solid var(--gothic-border);
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gothic-red);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--gothic-red);
+}
+
+.feature-card h3 {
+    color: var(--gothic-light);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-family: 'Cinzel', serif;
+}
+
+.feature-card p {
+    color: var(--gothic-silver);
+    line-height: 1.6;
+}
+
+/* قسم المنتجات */
+.products-section {
+    padding: 80px 0;
+    background: var(--gothic-dark);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-family: 'Cinzel', cursive;
+    font-size: 2.5rem;
+    color: var(--gothic-light);
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: var(--gothic-red);
+    margin: 15px auto;
+    box-shadow: 0 0 10px var(--gothic-red);
+}
+
+.section-header p {
+    color: var(--gothic-silver);
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.product-card {
+    background: linear-gradient(145deg, var(--gothic-dark), var(--gothic-gray));
+    border: 1px solid var(--gothic-border);
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.product-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    background: linear-gradient(45deg, transparent, var(--gothic-red), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.product-card:hover:before {
+    opacity: 1;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(139, 0, 0, 0.4);
+    border-color: var(--gothic-red);
+}
+
+.product-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    background: var(--gothic-darker);
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 5, 5, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-img-container:hover .product-overlay {
+    opacity: 1;
+}
+
+.view-product-btn {
+    background: var(--gothic-red);
+    color: var(--gothic-light);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.view-product-btn:hover {
+    background: var(--gothic-blood);
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 20px;
+    text-align: right;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    color: var(--gothic-light);
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-category {
+    color: var(--gothic-red);
+    font-size: 0.9rem;
+    margin: 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.current-price {
+    font-size: 1.3rem;
+    color: var(--gothic-red);
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+.btn-gothic-small {
+    background: var(--gothic-red);
+    color: var(--gothic-light);
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-gothic-small:hover {
+    background: var(--gothic-blood);
+    transform: translateY(-1px);
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-gothic-large {
+    background: linear-gradient(135deg, var(--gothic-red), var(--gothic-dark));
+    color: var(--gothic-light);
+    padding: 18px 45px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+}
+
+.btn-gothic-large:hover {
+    background: linear-gradient(135deg, var(--gothic-dark), var(--gothic-red));
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+}
+
+/* قسم عن المتجر */
+.about-section {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, var(--gothic-dark), var(--gothic-darker));
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-content h2 {
+    color: var(--gothic-light);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: 'Cinzel', serif;
+}
+
+.about-content p {
+    color: var(--gothic-silver);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--gothic-red);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--gothic-silver);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-image {
+    position: relative;
+}
+
+.gothic-pattern {
+    width: 100%;
+    height: 300px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(45deg, var(--gothic-gray), var(--gothic-dark));
+    border: 2px solid var(--gothic-red);
+    position: relative;
+    overflow: hidden;
+}
+
+.gothic-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 L80,20 L80,80 L20,80 Z" stroke="%238B0000" stroke-width="0.5" fill="none"/><path d="M30,30 L70,30 L70,70 L30,70 Z" stroke="%238B0000" stroke-width="0.5" fill="none"/></svg>');
+    opacity: 0.3;
+}
+
+/* التذييل */
+.gothic-footer {
+    background: linear-gradient(to top, var(--gothic-dark), var(--gothic-darker));
+    border-top: 1px solid var(--gothic-red);
+    padding: 50px 0 20px;
+    margin-top: 50px;
+    position: relative;
+}
+
+.gothic-footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gothic-red), transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-title {
+    font-family: 'Cinzel', cursive;
+    color: var(--gothic-red);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--gothic-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.footer-links a:hover {
+    color: var(--gothic-red);
+    text-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gothic-border);
+    color: var(--gothic-light);
+    font-size: 14px;
+}
+
+/* صفحة المنتج */
+.product-detail {
+    background: linear-gradient(145deg, var(--gothic-dark), var(--gothic-gray));
+    border: 1px solid var(--gothic-border);
+    border-radius: 0;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    margin: 100px auto 50px;
+    max-width: 1200px;
+}
+
+.product-gallery {
+    position: relative;
+}
+
+.main-product-image {
+    width: 100%;
+    border: 1px solid var(--gothic-border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* صفحة تسجيل الدخول */
+.login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--gothic-darker), var(--gothic-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: linear-gradient(145deg, var(--gothic-dark), var(--gothic-gray));
+    border: 1px solid var(--gothic-red);
+    border-radius: 0;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.login-card h2 {
+    color: var(--gothic-red);
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+/* رسائل التنبيه */
+.alert {
+    border-radius: 0;
+    border: none;
+    border-left: 4px solid;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: rgba(0, 100, 0, 0.2);
+    border-left-color: #008000;
+    color: #00cc00;
+}
+
+.alert-error {
+    background: rgba(139, 0, 0, 0.2);
+    border-left-color: var(--gothic-red);
+    color: var(--gothic-blood);
+}
+
+/* تأثيرات التحميل */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تحسينات عامة */
+.form-control {
+    background: var(--gothic-gray);
+    border: 1px solid var(--gothic-border);
+    color: var(--gothic-light);
+    border-radius: 0;
+    padding: 12px;
+    width: 100%;
+}
+
+.form-control:focus {
+    background: var(--gothic-gray);
+    border-color: var(--gothic-red);
+    color: var(--gothic-light);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+    outline: none;
+}
+
+/* وسائط متجاوبة */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .features-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .btn-gothic {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .about-content h2 {
+        font-size: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,67 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 class="section-title">إدارة المنتجات</h2>
+        <a href="#add-product" class="btn-gothic">إضافة منتج جديد</a>
+    </div>
+
+    <div class="product-card" id="add-product">
+        <div class="product-info">
+            <h3 class="product-title">إضافة منتج جديد</h3>
+            <form method="POST" action="{{ url_for('admin_products') }}" enctype="multipart/form-data" style="margin-top: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <input type="text" name="name" class="form-control" placeholder="اسم المنتج" required>
+                    </div>
+                    <div>
+                        <input type="number" step="0.01" name="price" class="form-control" placeholder="السعر" required>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <input type="text" name="category" class="form-control" placeholder="الفئة" required>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <textarea name="description" class="form-control" placeholder="وصف المنتج" rows="4" required></textarea>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <input type="file" name="images" class="form-control" multiple accept="image/*" required>
+                    <small style="color: var(--gothic-light); opacity: 0.7;">يمكن اختيار أكثر من صورة</small>
+                </div>
+                
+                <button type="submit" class="btn-gothic">إضافة المنتج</button>
+            </form>
+        </div>
+    </div>
+
+    <h3 style="margin: 40px 0 20px 0; color: var(--gothic-red);">جميع المنتجات</h3>
+    
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="{{ url_for('static', filename='images/products/' + product.images.split(',')[0]) if product.images else '' }}" 
+                     alt="{{ product.name }}" class="product-img">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p style="color: var(--gothic-light); margin: 10px 0; font-size: 0.9em;">{{ product.category }}</p>
+                <div class="product-price">
+                    <span class="current-price">{{ product.price }} درهم</span>
+                </div>
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="{{ url_for('delete_product', product_id=product.id) }}" 
+                       class="btn-gothic" 
+                       style="background: var(--gothic-dark); padding: 8px 15px;"
+                       onclick="return confirm('هل أنت متأكد من حذف هذا المنتج؟')">
+                       حذف
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="products">
+        <h2 class="section-title">جميع المنتجات</h2>
+        
+        <div style="margin-bottom: 2rem; text-align: center;">
+            <a href="{{ url_for('shop') }}" class="btn" style="margin: 0 0.5rem;">الكل</a>
+            {% for category in categories %}
+            <a href="{{ url_for('shop', category=category) }}" class="btn" style="margin: 0 0.5rem;">{{ category }}</a>
+            {% endfor %}
+        </div>
+        
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='images/products/' + product.images.split(',')[0]) if product.images else '' }}" alt="{{ product.name }}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-price">{{ product.price }} درهم</p>
+                    <p class="product-description">{{ product.description[:100] }}...</p>
+                    <a href="{{ url_for('product', product_id=product.id) }}" class="btn">عرض المنتج</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

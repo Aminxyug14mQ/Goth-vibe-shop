@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- قسم الهيرو الرئيسي -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">GOTHIC VIBE SHOP</h1>
+        <p class="hero-subtitle">اكتشف عالم الأزياء القوطية المظلمة والأنيقة</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('shop') }}" class="btn-gothic">تصفح المتجر</a>
+            <a href="/admin/login" class="btn-gothic-outline">الدخول للإدارة</a>
+        </div>
+    </div>
+</section>
+
+<!-- قسم الميزات -->
+<section class="features-section">
+    <div class="features-container">
+        <div class="feature-card">
+            <div class="feature-icon">🦇</div>
+            <h3>تصميمات حصرية</h3>
+            <p>مجموعة فريدة من التصميمات القوطية التي لا تجدها في أي مكان آخر</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3>جودة عالية</h3>
+            <p>منتجاتنا مصنوعة من أفضل المواد بأعلى معايير الجودة</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🖤</div>
+            <h3>شحن سريع</h3>
+            <p>توصيل سريع وآمن لجميع أنحاء المملكة خلال 24-48 ساعة</p>
+        </div>
+    </div>
+</section>
+
+<!-- قسم المنتجات المميزة -->
+<section class="products-section">
+    <div class="section-header">
+        <h2 class="section-title">منتجاتنا المميزة</h2>
+        <p>اكتشف أحدث التصميمات في مجموعتنا القوطية</p>
+    </div>
+    
+    <div class="product-grid">
+        {% for product in featured_products %}
+        <div class="product-card fade-in">
+            <div class="product-img-container">
+                <img src="{{ url_for('static', filename='images/products/' + product.images.split(',')[0]) if product.images else '' }}" 
+                     alt="{{ product.name }}" class="product-img">
+                <div class="product-overlay">
+                    <a href="{{ url_for('product', product_id=product.id) }}" class="view-product-btn">عرض المنتج</a>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-category">{{ product.category }}</p>
+                <div class="product-price">
+                    <span class="current-price">{{ product.price }} درهم</span>
+                </div>
+                <a href="{{ url_for('order', product_id=product.id) }}" class="btn-gothic-small">اطلب الآن</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="view-all-container">
+        <a href="{{ url_for('shop') }}" class="btn-gothic-large">عرض جميع المنتجات</a>
+    </div>
+</section>
+
+<!-- قسم حول المتجر -->
+<section class="about-section">
+    <div class="about-container">
+        <div class="about-content">
+            <h2>مرحباً بكم في عالم Gothic Vibe</h2>
+            <p>متجرنا متخصص في المنتجات القوطية والفنية التي تعبر عن individuality والتميز. نحن نؤمن بأن الأسلوب القوطي ليس مجرد موضة، بل هو طريقة حياة تعبر عن العمق والجمال في الظلال.</p>
+            <p>من الملابس إلى الإكسسوارات، كل قطعة في متجرنا تم اختيارها بعناية لتقدم لك تجربة تسوق فريدة من نوعها.</p>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">منتج حصري</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">عميل سعيد</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">دعم عملاء</span>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <div class="gothic-pattern"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

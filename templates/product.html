@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="product-detail">
+        <div class="product-container">
+            <div class="product-gallery">
+                <img id="main-image" src="{{ url_for('static', filename='images/products/' + images[0]) if images else '' }}" alt="{{ product.name }}" class="main-image">
+                {% if images|length > 1 %}
+                <div class="thumbnail-container">
+                    {% for image in images %}
+                    <img src="{{ url_for('static', filename='images/products/' + image) }}" alt="{{ product.name }} - صورة {{ loop.index }}" class="thumbnail {% if loop.first %}active{% endif %}" onclick="changeImage(this)">
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="product-details">
+                <h1>{{ product.name }}</h1>
+                <p class="product-price">{{ product.price }} درهم</p>
+                <p class="product-description">{{ product.description }}</p>
+                
+                <a href="{{ url_for('order', product_id=product.id) }}" class="btn">اطلب عبر واتساب</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function changeImage(element) {
+            // تحديث الصورة الرئيسية
+            document.getElementById('main-image').src = element.src;
+            
+            // إزالة الفعالية من جميع الصور المصغرة
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            
+            // إضافة الفعالية للصورة المحددة
+            element.classList.add('active');
+        }
+    </script>
+{% endblock %}

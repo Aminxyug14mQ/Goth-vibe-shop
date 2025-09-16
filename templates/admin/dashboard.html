@@ -1,0 +1,65 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+    <h2 class="section-title">Admin Dashboard</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+        <div class="product-card">
+            <div class="product-info">
+                <h3 class="product-title">Total Products</h3>
+                <div class="current-price">{{ products|length }}</div>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-info">
+                <h3 class="product-title">Active Products</h3>
+                <div class="current-price">{{ products|selectattr('in_stock')|list|length }}</div>
+            </div>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-info">
+                <h3 class="product-title">Categories</h3>
+                <div class="current-price">{{ categories|length }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-info">
+            <h3 class="product-title">Quick Actions</h3>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="{{ url_for('admin_products') }}" class="btn-gothic">Manage Products</a>
+                <a href="{{ url_for('admin_products') }}" class="btn-gothic">Add New Product</a>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="margin: 40px 0 20px 0; color: var(--gothic-red);">Recent Products</h3>
+    
+    <div class="product-grid">
+        {% for product in products[-4:]|reverse %}
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="{{ url_for('static', filename='images/products/' + product.images.split(',')[0]) if product.images else '' }}" 
+                     alt="{{ product.name }}" class="product-img">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <div class="product-price">
+                    <span class="current-price">{{ product.price }} DH</span>
+                </div>
+                <div style="margin-top: 10px;">
+                    <a href="{{ url_for('delete_product', product_id=product.id) }}" 
+                       class="btn-gothic" 
+                       style="background: var(--gothic-dark);"
+                       onclick="return confirm('Are you sure you want to delete this product?')">
+                       Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
