@@ -1,7 +1,5 @@
-sudo bash -c 'cat > requirements.txt << "EOL"
 Flask==2.3.3
 Flask-SQLAlchemy==3.0.5
 Werkzeug==2.3.7
-Pillow==10.4.0
+Pillow==11.3.0
 gunicorn==21.2.0
-EOL'
